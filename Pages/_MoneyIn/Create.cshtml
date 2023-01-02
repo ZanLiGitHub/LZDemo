@@ -1,0 +1,59 @@
+﻿@page
+@model LZDemo.Pages._MoneyIn.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>MoneyIn</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MoneyIn.Date" class="control-label"></label>
+                <input asp-for="MoneyIn.Date" class="form-control" />
+                <span asp-validation-for="MoneyIn.Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MoneyIn.Customer" class="control-label"></label>
+                <input asp-for="MoneyIn.Customer" class="form-control" />
+                <span asp-validation-for="MoneyIn.Customer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MoneyIn.Details" class="control-label"></label>
+                <input asp-for="MoneyIn.Details" class="form-control" />
+                <span asp-validation-for="MoneyIn.Details" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MoneyIn.ReceiptNo" class="control-label"></label>
+                <input asp-for="MoneyIn.ReceiptNo" class="form-control" />
+                <span asp-validation-for="MoneyIn.ReceiptNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MoneyIn.TotalReceipts" class="control-label"></label>
+                <input asp-for="MoneyIn.TotalReceipts" class="form-control" />
+                <span asp-validation-for="MoneyIn.TotalReceipts" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MoneyIn.GST" class="control-label"></label>
+                <input asp-for="MoneyIn.GST" class="form-control" />
+                <span asp-validation-for="MoneyIn.GST" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

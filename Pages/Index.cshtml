@@ -1,0 +1,142 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<style>
+    .dropdown-item{
+        --bs-dropdown-link-hover-bg: #888;
+    }
+</style>
+
+<div class="text-center container p-3" style="height:100vh;">
+    <div class="card h-100">
+        <div class="card-header"><i class="bi bi-cash-stack"></i> Cashflow</div>
+        <div class="card-body overflow-auto p-0" style="display:flex">
+            <div class="m-2" style="flex:1;display:flex;flex-direction:column">
+                <div class="card mb-3" style="height:50%">
+                    <div class="card-header"><i class="bi bi-bank"></i> Bank Accounts</div>
+                    <div class="card-body h-100 overflow-auto p-0">
+                        <table class="table text-start" style="font-size:small">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.BankAccount[0].AccountName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.BankAccount[0].Balance)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.BankAccount)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.AccountName)
+                                        </td>
+                                        <td>
+                                            $@Html.DisplayFor(modelItem => item.Balance)
+                                        </td>
+                                        <td>
+                                            <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card" style="height:47%">
+                    <div class="card-header"><i class="bi bi-cash"></i> GST Liability</div>
+                    <div class="card-body h-100 overflow-auto p-0">
+                        <canvas id="GSTChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="m-2" style="flex:2">
+                <div class="card h-100">
+                    <div class="card-header"><i class="bi bi-graph-up"></i> Net Cashflow</div>
+                    <div class="card-body h-100"><canvas id="myChart"></canvas></div>
+                    <div class="card-footer text-start">
+                        <div class="row row-cols-2">
+                            <div class="col">
+                                <div class="btn btn-primary"><a class="text-white text-decoration-none" asp-page="/_MoneyIn/Create">Create New</a></div>
+                            </div>
+                            <div class="col text-end">
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle text-decoration-none btn" data-bs-toggle="dropdown" aria-expanded="false">
+                                        2022
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-light">
+                                        <li><a class="dropdown-item" asp-area="" asp-page="/_BankAccount/Index">2021</a></li>
+                                        <li><a class="dropdown-item" asp-area="" asp-page="/_BankAccount/Index">2020</a></li>
+                                        <li><a class="dropdown-item" asp-area="" asp-page="/_BankAccount/Index">2019</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('myChart');
+    const gst = document.getElementById('GSTChart');
+
+    new Chart(gst, {
+        type: 'line',
+        data: {
+            labels: ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [
+                {
+                label: 'GST',
+                data: [420.21, 390.41, 344.14, 302.45, 315.69, 512.41, 523.11, 476.15, 441.51, 483.11, 310.55, 228.51],
+                borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [
+                {
+                label: 'Money In',
+                data: [4200.21, 3900.41, 3444.14, 3012.45, 3159.69, 7123.41, 6823.11, 5976.15, 5641.51, 4823.11, 4510.55, 4328.51],
+                borderWidth: 1,
+                },
+                {
+                    label: 'Money Out',
+                    data: [200, 900.41, 344.14, 302.45, 159.69, 123.41, 623.11, 576.15, 561.51, 823.11, 510.55, 428.51],
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>

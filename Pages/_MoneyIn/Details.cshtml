@@ -1,0 +1,55 @@
+﻿@page
+@model LZDemo.Pages._MoneyIn.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>MoneyIn</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MoneyIn.Date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MoneyIn.Date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MoneyIn.Customer)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MoneyIn.Customer)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MoneyIn.Details)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MoneyIn.Details)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MoneyIn.ReceiptNo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MoneyIn.ReceiptNo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MoneyIn.TotalReceipts)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MoneyIn.TotalReceipts)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MoneyIn.GST)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MoneyIn.GST)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.MoneyIn?.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
